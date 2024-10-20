@@ -1,8 +1,6 @@
 
 
 
-setwd('C:/Users/11830/Desktop/Research/Articles/PV_N.article/Nature Communications/返修1/Figures返修1/Figure5_revised')
-
 library(tidyverse)
 
 data = read.csv('15N_SILAC_Results.csv')

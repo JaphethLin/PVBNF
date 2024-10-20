@@ -12,9 +12,7 @@ library(patchwork)
 
 
 ### 非靶向 ###
-setwd('C:/Users/11830/Desktop/Research/Articles/PV_N.article/Nature Communications/返修1/Figures返修1/Figure4_revised/非靶向代谢组测定')
-
-metadata = read.csv('metadata.csv', row.names = 'sample')
+metadata = read.csv('Figure1_metadata.csv', row.names = 'sample')
 
 metabolite = read.csv('metabolite_class.csv', row.names = 'ID')
 metabolite_data = metabolite[,row.names(metadata)]
@@ -50,13 +48,9 @@ data_$type = factor(data_$type, levels = c('Slight', 'Severe'))
 
 
 
-
-
 metadata_f = metadata %>% filter(habitat=='Rhizosphere')
 metabolite_data = metabolite[,row.names(metadata_f)]
 metabolite_info = metabolite[,c(1:10,14)]
-
-metabolite_info[metabolite_info$name=='1-Aminocyclopropanecarboxylic acid','name'] <- "Cyclopropanecarboxylic acid"
 
 # Carbohydrates
 plot_meta = metadata_f[colnames(metabolite_data),]
@@ -190,9 +184,7 @@ f5p3
 
 
 
-setwd('C:/Users/11830/Desktop/Research/Articles/PV_N.article/Nature Communications/返修1/Figures返修1/Figure4_revised/趋化实验/Experiment2')
-
-isca_res = read.csv('ISCA_Results.csv')
+isca_res = read.csv('Figure4_ISCA_Results.csv')
 
 isca_res$sig = ifelse(isca_res$Chemotactic.index>=0, "pos", "neg")
 
@@ -227,16 +219,6 @@ isca_res_bra = isca_res %>% filter(Strain=='Bradyrhizobium')
 
 
 
-
-############# Catechin ################
-
-library(picante)
-library(vegan)
-library(tidyverse)
-library(ape)
-
-
-setwd('C:/Users/11830/Desktop/Research/Articles/PV_N.article/Nature Communications/返修1/Figures返修1/Figure4_revised/靶向代谢组测定')
 
 ### 靶向 ###
 

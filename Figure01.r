@@ -2,10 +2,7 @@
 library(tidyverse)
 library(ggplot2)
 
-setwd("C:/Users/11830/Desktop/R.space/pv.N_work/Figure1")
 metadata = read.csv('metadata.csv', row.names = 'raw.sample')
-
-
 
 # change the feature
 env = metadata %>% select('TN', 'type', 'habitat', 'align')
@@ -119,7 +116,6 @@ library(ggplot2)
 
 
 
-setwd('C:/Users/11830/Desktop/R.space/pv.N_work/Figure2/nifHDK_50aa_abundance')
 nifHDK <- read.csv('nifHDK.csv', row.names = 1)
 
 
@@ -208,12 +204,8 @@ cbPalette <- c("#D0607D", "#980065")
 
 library(picante)
 library(vegan)
-library(tidyverse)
 library(ape)
-setwd('C:/Users/11830/Desktop/R.space/pv.N_work/Figure1')
 metadata = read.csv('metadata.csv', row.names = 'sample')
-
-setwd("C:/Users/11830/Desktop/R.space/pv.N_work/Figure1/amplicon/Second_sample")
 otutab = read.delim('table.txt', row.names = 1, sep = '\t')
 tree = read.tree('rooted_tree.nwk')
 meta = metadata %>% filter(habitat=='Rhizosphere' | habitat == 'Bulk')
@@ -269,10 +261,10 @@ data = score %>% filter(habitat=='Rhizosphere')
 
 
 
-setwd('C:/Users/11830/Desktop/R.space/pv.N_work/Figure2')
+gmetadata = read.csv('greenhouse_metadata.csv', row.names = 'Name')
 
-plantN = read.csv('Pot1_plant_TCTN.csv', row.names = 'Name')
-
+plantN = gmetadata %>% filter(treatment!='NH4')
+  
 plantN$treatment = factor(plantN$treatment, levels = c("Control", "AsV"))
 
 data = melt(plantN)
@@ -295,16 +287,9 @@ data = data %>% filter(variable!='TC.root' & variable!='TC.shoot')
 
 
 
-#################################################################
-library(tidyverse)
+data = gmetadata
 
-setwd('C:/Users/11830/Desktop/R.space/pv.N_work/Figure2')
-
-data = read.csv("pot_plant_biomass.csv")
-
-data$treatment = factor(data$treatment, level = c('CK', 'AsV', 'NH4', 'NO3'))
-
-data = data %>% filter(treatment != "NO3")
+data$treatment = factor(data$treatment, level = c('CK', 'AsV', 'NH4'))
 
 (ggplot(data, aes(treatment, biomass))+ 
     
@@ -326,6 +311,8 @@ data = data %>% filter(treatment != "NO3")
           legend.position = "none")+
     
     theme(axis.text=element_text(colour='black',size=9)) -> biomass)
+
+
 
 ####################################################
 
